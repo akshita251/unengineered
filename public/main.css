@@ -1,0 +1,221 @@
+body {
+    background: black;
+    color: white;
+    min-height: 100%;
+    font-family: 'Poppins';
+    font-size: 1em;
+    width: 100vw;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    line-height: 1.3em;
+}
+
+li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    text-align: center;
+    padding: .8em 1.2em;
+}
+
+.logo {
+    position: fixed;
+    left: 0em;
+    top: -1em;
+    z-index: 10;
+    width: 150px;
+}
+
+section {
+    text-align: left;
+    margin-left: 10vw;
+}
+
+.hide-mobile {
+    display: none;
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 40px;
+    margin-top: 2em;
+}
+
+.socials {
+    margin-left: -0.4em;
+}
+
+.socials a {
+    margin: 0.4em;
+}
+
+.about {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 55%;
+    grid-template-rows: 80% 20%;
+    grid-template-areas: "names image" "blank handles";
+}
+
+.Image {
+    width: 100%;
+    margin-top: -9vw;
+    grid-area: image;
+    z-index: -1;
+}
+
+.names {
+    grid-area: names;
+    font-size: 1.7em;
+    font-weight: 700;
+    position: absolute;
+    bottom: 8vw;
+    right: 0vw;
+    text-align: right;
+}
+
+.handles {
+    grid-area: handles;
+    text-align: start;
+    margin-right: 3vw;
+}
+
+.handles li img {
+    margin-right: 0.4em;
+}
+
+.handles li {
+    text-align: right;
+}
+
+.podcast-gray-container {
+    background: #464646;
+    margin: 4em 0.3em;
+    text-align: left;
+    padding-left: 11vw;
+    padding-top: 9vw;
+    padding-bottom: 5vw;
+}
+
+.podcast-title {
+    font-weight: 600;
+    font-size: 1.4em;
+    padding-bottom: 5vw;
+}
+
+.podcast-thumbnail {
+    width: 76%;
+}
+
+.podcast-description {
+    padding: 5vw 0;
+}
+
+.links-btn {
+    width: 20%;
+}
+
+.link-img {
+    width: 30%;
+}
+
+.line {
+    border-top: 1.2px solid #000000;
+    width: 60%;
+}
+
+.lens-image {
+    width: 35%;
+}
+
+.episodes {
+    margin-top: 20vw;
+    text-align: center;
+    margin-bottom: 40vw;
+}
+
+.episodes-title {
+    display: flex;
+}
+
+h2 {
+    margin-left: -22vw;
+    margin-top: 9vw;
+    font-weight: 500;
+    font-size: 48px;
+}
+
+.episode-container {
+    display: inline-block;
+    text-align: left;
+    width: 70%
+}
+
+.episode-number {
+    font-weight: 500;
+    color: #878484;
+    font-size: 1.7em;
+    padding: 6vw 0;
+}
+
+.episode-podcast-title {
+    font-weight: 500;
+    font-size: 1.6em;
+    padding-bottom: 5.5vw;
+}
+
+.thumbnail {
+    width: 100%
+}
+
+
+/* podcast-page-designing */
+
+.podcast-page-container {
+    padding: 1em 1.8em;
+}
+
+.podcast-container {
+    text-align: left;
+    padding-left: 1em;
+}
+
+.podcast-page-title {
+    font-weight: 600;
+    font-size: 1.4em;
+    padding-top: 1em;
+    padding-bottom: 0.5em
+}
+
+.title-line {
+    border-top: 2px solid #878484;
+    width: 70%;
+    margin-bottom: 5vw;
+}
+
+.podcast-page-thumbnail {
+    width: 50%;
+}
+
+.podcast-page-description {
+    width: 80%;
+    padding: 1.3em 0;
+}
