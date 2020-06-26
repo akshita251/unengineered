@@ -1,0 +1,176 @@
+body {
+    background: black;
+    color: white;
+    min-height: 100%;
+    font-family: 'Poppins';
+    font-size: 0.9em;
+    width: 100vw;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    line-height: 1.2em;
+}
+
+.podcast-page-container {
+    padding: 1em 1.8em;
+}
+
+.podcast-container {
+    text-align: left;
+    padding-left: 1em;
+}
+
+.podcast-page-title {
+    font-weight: 600;
+    font-size: 1.4em;
+    padding-top: 1em;
+    padding-bottom: 0.5em
+}
+
+.title-line {
+    border-top: 1.5px solid #878484;
+    width: 75%;
+    margin-bottom: 5vw;
+}
+
+.podcast-page-thumbnail {
+    width: 50%;
+}
+
+.podcast-page-description {
+    width: 67%;
+    padding: 1.3em 0;
+}
+
+h3 {
+    font-weight: 500;
+    font-size: 1.4em;
+    padding: 1.2em 0;
+}
+
+.sections {
+    display: grid;
+    grid-template-columns: auto 55%;
+    grid-template-rows: 15% 65% auto;
+    grid-template-areas: "image title" "image description" "socials blank";
+}
+
+.section-thumbnail {
+    grid-area: image;
+    padding: 3vw;
+    padding-left: 0;
+    width: 90%;
+}
+
+.section-title {
+    grid-area: title;
+    font-weight: 500;
+    font-size: 1.2em;
+    margin-left: 2vw;
+}
+
+.section-description {
+    grid-area: description;
+    margin-left: 2vw;
+    width: 80%;
+    padding-top: 0vw;
+}
+
+
+/* .cross {
+    padding-top: 2vw;
+} */
+
+.socials {
+    grid-area: socials;
+    margin-left: -0.4em;
+    margin-bottom: 10vw;
+}
+
+.socials a {
+    margin: 0.4em;
+}
+
+@media only screen and (min-width: 650px) {
+    body {
+        font-size: 1.1em;
+    }
+    .podcast-container {
+        padding-left: 12vw;
+    }
+    .podcast-page-title {
+        font-size: 2.5em;
+        padding-top: 1.5em;
+        padding-bottom: 0.3em;
+        padding-left: 7vw;
+    }
+    .title-line {
+        border-top: 2px solid #878484;
+        width: 40%;
+        margin-bottom: 7 vw;
+    }
+    .main {
+        display: grid;
+        grid-template-columns: 60% auto;
+        grid-template-areas: "image des";
+    }
+    .podcast-page-thumbnail {
+        width: 80%;
+        grid-area: image;
+    }
+    .podcast-page-description {
+        width: 75%;
+        padding: 2vw 0;
+        grid-area: des;
+    }
+    h3 {
+        font-size: 2.3em;
+    }
+    .sections {
+        display: grid;
+        grid-template-columns: auto 55%;
+        grid-template-rows: 15% auto auto;
+        grid-template-areas: "image title" "image description" "image socials";
+    }
+    .section-thumbnail {
+        grid-area: image;
+        padding: 0vw;
+        width: 65%;
+    }
+    .section-title {
+        grid-area: title;
+        font-weight: 500;
+        font-size: 1.7em;
+        margin-left: 1.7vw;
+    }
+    .section-description {
+        grid-area: description;
+        margin-left: 1.7vw;
+        width: 75%;
+    }
+    .socials {
+        grid-area: socials;
+        margin-left: 1.7vw;
+        margin-bottom: 0vw;
+    }
+    .socials a :nth-child(1) {
+        margin: 0em;
+    }
+    .socials a :nth-child(2) {
+        margin: 0.4em;
+    }
+}
