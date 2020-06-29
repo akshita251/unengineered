@@ -4,7 +4,7 @@ body {
     min-height: 100%;
     font-family: 'Poppins';
     font-size: 1em;
-    width: 100vw;
+    width: 100%;
 }
 
 * {
@@ -48,7 +48,7 @@ li {
 
 section {
     text-align: left;
-    margin-left: 10vw;
+    margin-left: 8vw;
 }
 
 .hide-mobile {
@@ -58,7 +58,7 @@ section {
 h1 {
     font-weight: 800;
     font-size: 40px;
-    margin-top: 1.6em;
+    margin-top: 1.5em;
 }
 
 .socials {
@@ -217,7 +217,7 @@ h2 {
     }
     .Image {
         width: 125%;
-        margin-left: 0 vw;
+        margin-left: 0vw;
         margin-top: -9vw;
         grid-area: image;
     }
@@ -238,8 +238,9 @@ h2 {
     }
     .home-page {
         display: grid;
-        grid-template-columns: auto 80%;
+        grid-template-columns: 20% 80%;
         grid-template-areas: "about podcast";
+        /* width: 100%; */
     }
     .podcast-gray-container {
         width: 60%;
@@ -255,7 +256,7 @@ h2 {
     }
     .podcast-thumbnail {
         width: 100%;
-        margin-left: -20vw;
+        margin-left: -17vw;
     }
     .podcast-description {
         padding-left: 25vw;
@@ -273,11 +274,12 @@ h2 {
         scroll-behavior: smooth;
     }
     .desktop-page {
-        height: 60vw;
+        height: 100vh;
+        width: 90vw;
     }
     .scroll {
-        margin-left: 45vw;
-        margin-top: -7vw;
+        margin-left: 48vw;
+        margin-top: -5vw;
     }
     .lens-image {
         width: 25%;
@@ -308,7 +310,7 @@ h2 {
     .right {
         grid-area: right;
         margin-top: -20vw;
-        padding-left: 3 vw;
+        padding-left: 3vw;
         padding-right: 3vw;
     }
     .left {
@@ -333,5 +335,14 @@ h2 {
     }
     .names {
         font-size: 2.6em;
+    }
+    .podcast-gray-container {
+        margin: 4em 10vw;
+    }
+}
+
+@media only screen and (min-width: 900px) and (max-width: 1110px) {
+    .links-btn {
+        margin-top: 4vw;
     }
 }
