@@ -7,13 +7,14 @@
     <title>Unengineered</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script>
 </head>
 
-<body>
+<body onload="load()">
+    <div id="loading"></div>
     <div class="container">
-        <!-- <header>
-            <img src="imgs/logo.png" alt="logo" class="logo">
-        </header> -->
         <div class="desktop-page">
             <section>
                 <h1>
@@ -44,12 +45,12 @@
                         <div class="handles">
                             <ul>
                                 <li>
-                                    <a href="#">
+                                    <a href="https://instagram.com/lifeofadvait?igshid=i9v0zgv4iak">
                                         <img src="imgs/Instagram.svg" alt="spotify">
                                     </a>@lifeofadvait
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="https://instagram.com/atique.kudchi?igshid=vde3wyr47lok">
                                         <img src="imgs/Instagram.svg" alt="spotify">
                                     </a>@atique.kudchi
                                 </li>
@@ -59,25 +60,8 @@
                 </aside>
 
                 <div class="podcast-gray-container">
-                    <div class="podcast-title">
-                        Episode 3: Podcast title
-                    </div>
-                    <a href="episode3.html">
-                        <img src="imgs/thumbnail3.png" alt="Thumbnail" class="podcast-thumbnail">
-                    </a>
-                    <p class="podcast-description">
-                        podcast description blah blah blash..
-                    </p>
-                    <div class="links-btn">
-                        <a href="#">
-                            <img src="imgs/Links.svg" alt="links" class="link-img">
-                        </a>
-                    </div>
-                    <div class="line hide-desktop">
-                    </div>
                 </div>
             </div>
-
 
             <a href="#episodes">
                 <img src="imgs/scroll.svg" alt="Scroll down" class="scroll hide-mobile show-desktop">
@@ -90,49 +74,37 @@
                 <h2>Episodes</h2>
             </div>
             <div class="all-episodes">
-                <div class="episode-container right">
-                    <p class="episode-number">
-                        02
-                    </p>
-                    <p class="episode-podcast-title">
-                        Ep 2: Podcast title
-                    </p>
-                    <img src="imgs/thumbnail2.png" alt="thumbnail 2" class="thumbnail">
-                    <div class="socials">
-                        <a href="#">
-                            <img src="imgs/Spotify.svg" alt="spotify">
-                        </a>
-
-                        <a href="#">
-                            <img src="imgs/YouTube.svg" alt="spotify">
-                        </a>
-                    </div>
-                </div>
-
-                <div class="episode-container left">
-                    <p class="episode-number">
-                        01
-                    </p>
-                    <p class="episode-podcast-title">
-                        Ep 1: Podcast title
-                    </p>
-                    <img src="imgs/thumbnail2.png" alt="thumbnail 2" class="thumbnail">
-                    <div class="socials">
-                        <a href="#">
-                            <img src="imgs/Spotify.svg" alt="spotify">
-                        </a>
-
-                        <a href="#">
-                            <img src="imgs/YouTube.svg" alt="spotify">
-                        </a>
-                    </div>
-                </div>
+                <ul class="left" id="left"></ul>
+                <ul class="right" id="right"></ul>
             </div>
         </div>
     </div>
 
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyB-LZSrV6VhozXi9UoWEGzg41qtpurvLOE",
+            authDomain: "test-846e2.firebaseapp.com",
+            databaseURL: "https://test-846e2.firebaseio.com",
+            projectId: "test-846e2",
+            storageBucket: "test-846e2.appspot.com",
+            messagingSenderId: "801342277257",
+            appId: "1:801342277257:web:69cdc36a05f146f95fa858",
+            measurementId: "G-QQ7DY5HZ78"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        var storage = firebase.storage();
+    </script>
     <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0.0/dist/smooth-scroll.polyfills.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 
 </html>
+
+
+<!-- removed line -->
+
+<!-- <div class="line hide-desktop">
+    </div> -->

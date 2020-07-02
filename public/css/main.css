@@ -7,6 +7,15 @@ body {
     width: 100%;
 }
 
+#loading {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #000 url('https://i.gifer.com/Ayu7.gif') no-repeat center center;
+    z-index: 99999;
+    background-size: 50%;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -35,16 +44,6 @@ li {
     text-align: center;
     padding: .8em 1.2em;
 }
-
-
-/* 
-.logo {
-    position: fixed;
-    left: 0em;
-    top: -1em;
-    z-index: 10;
-    width: 150px;
-} */
 
 section {
     text-align: left;
@@ -156,6 +155,7 @@ h1 {
 
 .episodes-title {
     display: flex;
+    align-items: flex-start;
 }
 
 h2 {
@@ -240,7 +240,7 @@ h2 {
         display: grid;
         grid-template-columns: 20% 80%;
         grid-template-areas: "about podcast";
-        /* width: 100%; */
+        margin-left: 5vw;
     }
     .podcast-gray-container {
         width: 60%;
@@ -251,7 +251,7 @@ h2 {
         padding: 2vw;
     }
     .podcast-title {
-        font-size: 1.5em;
+        font-size: 1.6em;
         padding-bottom: 1vw;
     }
     .podcast-thumbnail {
@@ -312,6 +312,7 @@ h2 {
         margin-top: -20vw;
         padding-left: 3vw;
         padding-right: 3vw;
+        margin-bottom: 22vw;
     }
     .left {
         grid-area: left;
