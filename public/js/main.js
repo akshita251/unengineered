@@ -81,19 +81,55 @@ function readPodcast(doc, count) {
 
 }
 
-var first = db.collection('episodes').orderBy('episodeNumber', 'desc').limit(1);
 
-first.get().then((snapshot) => {
-    var lastVisible = snapshot.docs[snapshot.docs.length - 1];
-    snapshot.docs.forEach(doc => {
-        readLatestPodcast(doc)
+document.addEventListener("DOMContentLoaded", () => {
+
+    let options = {
+        root: null,
+        rootMargins: "0px",
+        threshold: 0.05
+    };
+    const observer = new IntersectionObserver(handleIntersect, options);
+    observer.observe(document.querySelector(".footer"));
+    //initial load of data
+    var first = db.collection('episodes').orderBy('episodeNumber', 'desc').limit(1);
+
+    first.get().then((snapshot) => {
+        var lastVisible = snapshot.docs[snapshot.docs.length - 1];
+        snapshot.docs.forEach(doc => {
+            readLatestPodcast(doc)
+        });
+
+        var next = db.collection("episodes")
+            .orderBy("episodeNumber", "desc")
+            .startAfter(lastVisible)
+            .limit(2);
+
+
+        next.get().then((snapshot) => {
+            var count = 0;
+            snapshot.docs.forEach(doc => {
+                count++;
+                readPodcast(doc, count);
+            });
+            lastVisible = snapshot.docs[snapshot.docs.length - 1];
+            next = db.collection("episodes")
+                .orderBy("episodeNumber", "desc")
+                .startAfter(lastVisible)
+                .limit(2);
+        });
     });
+});
 
-    var next = db.collection("episodes")
-        .orderBy("episodeNumber", "desc")
-        .startAfter(lastVisible)
-        .limit(20);
+function handleIntersect(entries) {
+    if (entries[0].isIntersecting) {
+        console.warn("something is intersecting with the viewport");
+        getData();
+    }
+}
 
+function getData() {
+    console.log("fetch some JSON data");
 
     next.get().then((snapshot) => {
         var count = 0;
@@ -105,10 +141,9 @@ first.get().then((snapshot) => {
         next = db.collection("episodes")
             .orderBy("episodeNumber", "desc")
             .startAfter(lastVisible)
-            .limit(20);
+            .limit(2);
     });
-
-});
+}
 
 
 // for links later
