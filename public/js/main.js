@@ -81,7 +81,7 @@ function readPodcast(doc, count) {
 
 }
 
-
+var next;
 document.addEventListener("DOMContentLoaded", () => {
 
     let options = {
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
             readLatestPodcast(doc)
         });
 
-        var next = db.collection("episodes")
+        next = db.collection("episodes")
             .orderBy("episodeNumber", "desc")
             .startAfter(lastVisible)
             .limit(2);
@@ -129,7 +129,7 @@ function handleIntersect(entries) {
 }
 
 function getData() {
-    console.log("fetch some JSON data");
+    console.log("fetch some data");
 
     next.get().then((snapshot) => {
         var count = 0;
