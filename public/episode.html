@@ -4,36 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>episode</title>
     <link rel="stylesheet" href="css/episode.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script>
 </head>
 
-<body>
+<body onload="load()">
+    <div id="loading"></div>
     <div class="podcast-page-container">
-        <div class="podcast-page-title">
-            Ep 3:Podcast Title
-        </div>
-        <div class="podcast-container">
-            <div class="title-line">
-            </div>
-            <div class="main">
-                <img src="imgs/thumbnail3.png" alt="thumbnail 3" class="podcast-page-thumbnail">
-                <div class="podcast-page-description">
-                    Description blah blah blah adflkjnm akdn akdfnml kadn kadfm kanfla knadfl kdf kmfdk knm kdk knank kalkn kfdl kdfaln kdfa<br> <br>
-                    <div class="socials">
-                        <a href="#">
-                            <img src="imgs/Spotify.svg" alt="spotify">
-                        </a>
-                        <a href="#">
-                            <img src="imgs/Instagram.svg" alt="spotify">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <h3>SECTIONS</h3>
-            <div class="sections">
-
+        <div class="podcast-container" id="container">
+            <!--<div class="sections">
                 <img src="imgs/ep3section1.png" alt="" class="section-thumbnail">
 
                 <div class="section-title">
@@ -52,9 +35,27 @@
                         <img src="imgs/Instagram.svg" alt="spotify">
                     </a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyB-LZSrV6VhozXi9UoWEGzg41qtpurvLOE",
+            authDomain: "test-846e2.firebaseapp.com",
+            databaseURL: "https://test-846e2.firebaseio.com",
+            projectId: "test-846e2",
+            storageBucket: "test-846e2.appspot.com",
+            messagingSenderId: "801342277257",
+            appId: "1:801342277257:web:69cdc36a05f146f95fa858",
+            measurementId: "G-QQ7DY5HZ78"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        var storage = firebase.storage();
+    </script>
+    <script src="js/episode.js"></script>
 </body>
 
 </html>

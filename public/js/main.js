@@ -1,7 +1,5 @@
 function load() {
     document.getElementById("loading").style.display = 'none';
-
-
 }
 
 
@@ -20,7 +18,7 @@ function readLatestPodcast(doc) {
     var podcastDescription = document.createElement('p');
 
     podcastTitle.className = 'podcast-title';
-    podcast.href = "episode.html";
+    podcast.href = "episode.html?episode=" + doc.data().episodeNumber;
     podcastThumbnail.alt = 'Thumbnail';
     podcastThumbnail.className = 'podcast-thumbnail';
     podcastDescription.className = 'podcast-description';
@@ -41,11 +39,16 @@ function readLatestPodcast(doc) {
 
 function readPodcast(doc, count) {
     var list;
-    if (count % 2 == 0) {
-        list = document.getElementById('left');
+    if (window.matchMedia("(min-width: 900px)").matches) {
+        if (count % 2 == 0) {
+            list = document.getElementById('left');
+        } else {
+            list = document.getElementById('right');
+        }
     } else {
-        list = document.getElementById('right');
+        list = document.getElementById('left')
     }
+
 
     var listElement = document.createElement('li');
     var episodeContainer = document.createElement('div');
@@ -54,10 +57,11 @@ function readPodcast(doc, count) {
     var episode = document.createElement('a');
     var episodeThumbnail = document.createElement('img');
 
+    localStorage.setItem("episodeNumber", doc.data().episodeNumber);
     episodeContainer.className = 'episode-container';
     episodeNumber.className = 'episode-number';
     episodeTitle.className = 'episode-podcast-title';
-    episode.href = "episode.html"
+    episode.href = "episode.html?episode=" + doc.data().episodeNumber;
     episodeThumbnail.className = 'thumbnail';
     episodeThumbnail.alt = 'thumbnail';
 
@@ -103,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
         next = db.collection("episodes")
             .orderBy("episodeNumber", "desc")
             .startAfter(lastVisible)
-            .limit(2);
+            .limit(15);
 
 
         next.get().then((snapshot) => {
@@ -116,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
             next = db.collection("episodes")
                 .orderBy("episodeNumber", "desc")
                 .startAfter(lastVisible)
-                .limit(2);
+                .limit(15);
         });
     });
 });
@@ -144,6 +148,8 @@ function getData() {
             .limit(2);
     });
 }
+
+
 
 
 // for links later

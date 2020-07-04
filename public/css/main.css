@@ -30,6 +30,14 @@ a {
     text-decoration: none;
 }
 
+a:hover {
+    background-color: transparent;
+}
+
+a:hover {
+    background-color: transparent;
+}
+
 p {
     line-height: 1.3em;
 }
@@ -189,7 +197,7 @@ h2 {
 }
 
 .footer {
-    height: 35vw;
+    height: 30vw;
 }
 
 @media only screen and (min-width: 900px) {
@@ -283,7 +291,7 @@ h2 {
     }
     .scroll {
         margin-left: 48vw;
-        margin-top: -5vw;
+        margin-top: -1vw;
     }
     .lens-image {
         width: 25%;
@@ -304,7 +312,7 @@ h2 {
     .episodes {
         padding-top: 5vw;
         margin-top: 0;
-        margin-bottom: 15vw;
+        margin-bottom: -2vw;
     }
     .all-episodes {
         display: grid;
