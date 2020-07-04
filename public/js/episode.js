@@ -2,6 +2,12 @@ function load() {
     document.getElementById("loading").style.display = 'none';
 }
 
+const cursor = document.querySelector('.cursor');
+
+document.addEventListener('mousemove', e => {
+    cursor.setAttribute("style", "top: " + (e.pageY - 10) + "px; left: " + (e.pageX - 10) + "px;")
+})
+
 var podcastContainer = document.querySelector("#container");
 const storageRef = storage.ref();
 
@@ -29,7 +35,7 @@ function readEpisode(doc) {
     });
 
     var episodeUrls = doc.data().episodeUrl;
-    if (episode.urls != null) {
+    if (episodeUrls != null) {
         for (var episodeUrlKey of Object.keys(episodeUrls)) {
             console.log(episodeUrlKey);
             console.log(episodeUrls[episodeUrlKey])
@@ -100,7 +106,6 @@ function readSections(doc, epNum) {
 }
 
 var episode = document.location.search.replace(/^.*?\=/, '')
-console.log(episode)
 
 db.collection("episodes").orderBy("episodeNumber", "desc").get().then((snapshot) => {
     snapshot.docs.forEach(doc => {

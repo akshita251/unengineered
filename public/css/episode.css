@@ -16,6 +16,20 @@ body {
     background-size: 50%;
 }
 
+.cursor {
+    z-index: 999999;
+    width: 25px;
+    height: 25px;
+    border: 1.5px solid white;
+    border-radius: 50%;
+    position: absolute;
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
+    animation: cursorAnim .5s infinite alternate;
+    pointer-events: none;
+    background-color: #4646464f;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -49,7 +63,8 @@ p {
     font-size: 1.4em;
     padding-top: 1em;
     padding-bottom: 0.5em;
-    margin-left: -2.5vw;
+    /* margin-left: -2vw;
+} */
 }
 
 .title-line {
@@ -118,19 +133,29 @@ h3 {
     margin: 0.4em;
 }
 
+.socials img {
+    transition: 0.5s;
+}
+
+.socials img:hover {
+    z-index: 1;
+    transform: scale(1.25);
+    box-shadow: 0 25px, 40px rgba(0, 0, 0, 0.5);
+}
+
 @media only screen and (min-width: 650px) {
     body {
         font-size: 1.1em;
     }
     .podcast-container {
-        padding-left: 12vw;
+        padding-left: 10vw;
     }
     .podcast-page-title {
         font-size: 2.5em;
         padding-top: 1.5em;
         padding-bottom: 0.3em;
         /* padding-left: 7vw; */
-        margin-left: -6vw;
+        margin-left: -4vw;
     }
     .title-line {
         border-top: 2px solid #878484;

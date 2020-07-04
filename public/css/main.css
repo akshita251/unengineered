@@ -5,6 +5,7 @@ body {
     font-family: 'Poppins';
     font-size: 1em;
     width: 100%;
+    height: 100vh;
 }
 
 #loading {
@@ -14,6 +15,20 @@ body {
     background: #000 url('https://i.gifer.com/Ayu7.gif') no-repeat center center;
     z-index: 99999;
     background-size: 50%;
+}
+
+.cursor {
+    z-index: 999999;
+    width: 25px;
+    height: 25px;
+    border: 1.5px solid white;
+    border-radius: 50%;
+    position: absolute;
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
+    animation: cursorAnim .5s infinite alternate;
+    pointer-events: none;
+    background-color: #4646464f;
 }
 
 * {
@@ -28,10 +43,6 @@ div {
 
 a {
     text-decoration: none;
-}
-
-a:hover {
-    background-color: transparent;
 }
 
 a:hover {
@@ -74,6 +85,46 @@ h1 {
 
 .socials a {
     margin: 0.4em;
+}
+
+.socials img {
+    transition: 0.5s;
+}
+
+.socials img:hover {
+    z-index: 1;
+    transform: scale(1.25);
+    box-shadow: 0 25px, 40px rgba(0, 0, 0, 0.5);
+}
+
+.handles li {
+    transition: 0.5s;
+}
+
+.handles li:hover {
+    z-index: 1;
+    transform: scale(1.45);
+    box-shadow: 0 25px, 40px rgba(0, 0, 0, 0.5);
+}
+
+.podcast-gray-container img {
+    transition: 0.5s;
+}
+
+.podcast-gray-container img:hover {
+    z-index: 1;
+    transform: scale(1.05);
+    box-shadow: 0 25px, 40px rgba(0, 0, 0, 0.5);
+}
+
+.episode-container img {
+    transition: 0.5s;
+}
+
+.episode-container img:hover {
+    z-index: 1;
+    transform: scale(1.1);
+    box-shadow: 0 25px, 40px rgba(0, 0, 0, 0.5);
 }
 
 @media only screen and (max-width: 900px) {
@@ -292,6 +343,14 @@ h2 {
     .scroll {
         margin-left: 48vw;
         margin-top: -1vw;
+    }
+    .scrollAnchor img {
+        transition: 1s;
+    }
+    .scrollAnchor img:hover {
+        z-index: 1;
+        transform: scale(1.25);
+        box-shadow: 0 25px, 40px rgba(0, 0, 0, 0.5);
     }
     .lens-image {
         width: 25%;
