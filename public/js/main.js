@@ -2,14 +2,18 @@ function load() {
     document.getElementById("loading").style.display = 'none';
 }
 
+var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 const cursor = document.querySelector('.cursor');
+if (!isSafari) {
 
-document.addEventListener('mousemove', e => {
-    if (window.matchMedia("(min-width:900px").matches) {
-        cursor.setAttribute("style", "top: " + (e.pageY - 10) + "px; left: " + (e.pageX - 10) + "px;")
-    }
-})
-
+    document.addEventListener('mousemove', e => {
+        if (window.matchMedia("(min-width:900px").matches) {
+            cursor.setAttribute("style", "top: " + (e.pageY - 10) + "px; left: " + (e.pageX - 10) + "px;")
+        }
+    })
+} else {
+    cursor.style.display = "none";
+}
 
 const scroll = new SmoothScroll('a[href*="#"]', {
     speed: 800
@@ -156,23 +160,3 @@ function getData() {
             .limit(2);
     });
 }
-
-
-
-
-// for links later
-
-// var linksBtn = document.createElement('div');
-// var linkAnchor = document.createElement('a');
-// var linksImg = document.createElement('img')
-// var line = document.createElement('div');
-// linksBtn.className = 'links-btn';
-// linkAnchor.href = '#';
-// linksImg.src = 'imgs/Links.svg';
-// linksImg.alt = 'links';
-// linksImg.className = 'link-img';
-// line.className = 'line hide-desktop';
-// latestEpisode.appendChild(linksBtn);
-// linksBtn.appendChild(linkAnchor);
-// linkAnchor.appendChild(linksImg);
-// latestEpisode.appendChild(line);

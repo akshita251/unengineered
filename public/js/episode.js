@@ -2,13 +2,18 @@ function load() {
     document.getElementById("loading").style.display = 'none';
 }
 
+var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 const cursor = document.querySelector('.cursor');
+if (!isSafari) {
 
-document.addEventListener('mousemove', e => {
-    if (window.matchMedia("(min-width:900px").matches) {
-        cursor.setAttribute("style", "top: " + (e.pageY - 10) + "px; left: " + (e.pageX - 10) + "px;")
-    }
-})
+    document.addEventListener('mousemove', e => {
+        if (window.matchMedia("(min-width:900px").matches) {
+            cursor.setAttribute("style", "top: " + (e.pageY - 10) + "px; left: " + (e.pageX - 10) + "px;")
+        }
+    })
+} else {
+    cursor.style.display = "none";
+}
 
 var podcastContainer = document.querySelector("#container");
 const storageRef = storage.ref();
@@ -36,7 +41,7 @@ function readEpisode(doc) {
     storageRef.child(episodeImageName).getDownloadURL().then(function(url) {
         podcastThumbnail.src = url;
     });
-    sectionHeading.textContent = 'SECTIONS';
+
 
     var episodeUrls = doc.data().episodeUrl;
     if (episodeUrls != null) {
@@ -59,6 +64,42 @@ function readEpisode(doc) {
                     socialAnchor.href = episodeUrls[episodeUrlKey];
                     socials.appendChild(socialAnchor);
                     socialAnchor.appendChild(socialImg);
+                    break;
+                case "youtube":
+                    socialAnchor.alt = 'youtube';
+                    socialImg.src = "imgs/YouTube.svg"
+                    socialAnchor.href = episodeUrls[episodeUrlKey];
+                    socials.appendChild(socialAnchor);
+                    socialAnchor.appendChild(socialImg);
+                    break;
+                case "googlepodcast":
+                    socialAnchor.alt = 'google podcast';
+                    socialImg.src = "imgs/googlePodcasts.svg"
+                    socialAnchor.href = episodeUrls[episodeUrlKey];
+                    socials.appendChild(socialAnchor);
+                    socialAnchor.appendChild(socialImg);
+                    break;
+                case "radiopublic":
+                    socialAnchor.alt = 'radio public';
+                    socialImg.src = "imgs/radiopublic.svg"
+                    socialAnchor.href = episodeUrls[episodeUrlKey];
+                    socials.appendChild(socialAnchor);
+                    socialAnchor.appendChild(socialImg);
+                    break;
+                case "pocketcasts":
+                    socialAnchor.alt = 'pocket casts';
+                    socialImg.src = "imgs/pocketcasts.svg"
+                    socialAnchor.href = episodeUrls[episodeUrlKey];
+                    socials.appendChild(socialAnchor);
+                    socialAnchor.appendChild(socialImg);
+                    break;
+                case "beaker":
+                    socialAnchor.alt = 'beaker';
+                    socialImg.src = "imgs/beaker.svg"
+                    socialAnchor.href = episodeUrls[episodeUrlKey];
+                    socials.appendChild(socialAnchor);
+                    socialAnchor.appendChild(socialImg);
+                    break;
             }
         }
     }
@@ -68,11 +109,12 @@ function readEpisode(doc) {
     main.appendChild(podcastThumbnail);
     main.appendChild(podcastDescription)
     podcastDescription.appendChild(socials);
-    podcastContainer.appendChild(sectionHeading);
 
     var epNum = doc.data().episodeNumber;
     db.collection("episodes").doc(doc.id).collection('sections').orderBy("sectionNumber").get().then((snapshot) => {
         snapshot.docs.forEach(doc => {
+            sectionHeading.textContent = 'SECTIONS';
+            podcastContainer.appendChild(sectionHeading);
             readSections(doc, epNum)
             console.log(doc.data())
         });
@@ -86,14 +128,19 @@ function readSections(doc, epNum) {
     var sectionTitle = document.createElement('div');
     var sectionDescription = document.createElement('div');
     var socials = document.createElement('div');
+    var youtubeAnchor = document.createElement('a');
+    var youtubeImg = document.createElement('img');
+    var instaAnchor = document.createElement('a');
+    var instaImg = document.createElement('img');
 
     sections.className = "sections"
     sectionThumbnail.className = 'section-thumbnail'
     sectionThumbnail.alt = 'thumbnail'
     sectionTitle.className = 'section-title';
     sectionDescription.className = 'section-description';
-    socials.className = 'socials';
-
+    socials.className = 'section-socials';
+    youtubeImg.alt = 'youtube';
+    instaImg.alt = 'instagram';
 
     const sectionImageName = 'sectionThumbnails/episode' + epNum + "/thumbnail" + doc.data().sectionNumber + '.png'
     storageRef.child(sectionImageName).getDownloadURL().then(function(url) {
@@ -101,13 +148,20 @@ function readSections(doc, epNum) {
     });
     sectionTitle.textContent = doc.data().sectionTitle;
     sectionDescription.textContent = doc.data().sectionDescription;
-
+    youtubeImg.src = "imgs/YouTube.svg"
+    instaImg.src = "imgs/Instagram.svg"
+    youtubeAnchor.href = doc.data().episodeUrl.youtube;
+    instaAnchor.href = doc.data().episodeUrl.instagram;
 
     podcastContainer.appendChild(sections);
     sections.appendChild(sectionThumbnail);
     sections.appendChild(sectionTitle);
     sections.appendChild(sectionDescription);
-    sections.appendChild(socials)
+    sections.appendChild(socials);
+    socials.appendChild(instaAnchor);
+    instaAnchor.appendChild(instaImg);
+    socials.appendChild(youtubeAnchor);
+    youtubeAnchor.appendChild(youtubeImg);
 }
 
 var episode = document.location.search.replace(/^.*?\=/, '')
