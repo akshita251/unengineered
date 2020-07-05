@@ -5,7 +5,9 @@ function load() {
 const cursor = document.querySelector('.cursor');
 
 document.addEventListener('mousemove', e => {
-    cursor.setAttribute("style", "top: " + (e.pageY - 10) + "px; left: " + (e.pageX - 10) + "px;")
+    if (window.matchMedia("(min-width:900px").matches) {
+        cursor.setAttribute("style", "top: " + (e.pageY - 10) + "px; left: " + (e.pageX - 10) + "px;")
+    }
 })
 
 var podcastContainer = document.querySelector("#container");
@@ -18,6 +20,7 @@ function readEpisode(doc) {
     var podcastThumbnail = document.createElement('img');
     var podcastDescription = document.createElement('div');
     var socials = document.createElement('div');
+    var sectionHeading = document.createElement('h3');
 
     podcastTitle.className = 'podcast-page-title';
     titleLine.className = 'title-line';
@@ -33,6 +36,7 @@ function readEpisode(doc) {
     storageRef.child(episodeImageName).getDownloadURL().then(function(url) {
         podcastThumbnail.src = url;
     });
+    sectionHeading.textContent = 'SECTIONS';
 
     var episodeUrls = doc.data().episodeUrl;
     if (episodeUrls != null) {
@@ -64,6 +68,7 @@ function readEpisode(doc) {
     main.appendChild(podcastThumbnail);
     main.appendChild(podcastDescription)
     podcastDescription.appendChild(socials);
+    podcastContainer.appendChild(sectionHeading);
 
     var epNum = doc.data().episodeNumber;
     db.collection("episodes").doc(doc.id).collection('sections').orderBy("sectionNumber").get().then((snapshot) => {
@@ -75,7 +80,7 @@ function readEpisode(doc) {
 }
 
 function readSections(doc, epNum) {
-    var sectionHeading = document.createElement('h3');
+
     var sections = document.createElement('div')
     var sectionThumbnail = document.createElement('img');
     var sectionTitle = document.createElement('div');
@@ -89,7 +94,7 @@ function readSections(doc, epNum) {
     sectionDescription.className = 'section-description';
     socials.className = 'socials';
 
-    sectionHeading.textContent = 'SECTIONS';
+
     const sectionImageName = 'sectionThumbnails/episode' + epNum + "/thumbnail" + doc.data().sectionNumber + '.png'
     storageRef.child(sectionImageName).getDownloadURL().then(function(url) {
         sectionThumbnail.src = url;
@@ -97,7 +102,7 @@ function readSections(doc, epNum) {
     sectionTitle.textContent = doc.data().sectionTitle;
     sectionDescription.textContent = doc.data().sectionDescription;
 
-    podcastContainer.appendChild(sectionHeading);
+
     podcastContainer.appendChild(sections);
     sections.appendChild(sectionThumbnail);
     sections.appendChild(sectionTitle);

@@ -17,20 +17,6 @@ body {
     background-size: 50%;
 }
 
-.cursor {
-    z-index: 999999;
-    width: 25px;
-    height: 25px;
-    border: 1.5px solid white;
-    border-radius: 50%;
-    position: absolute;
-    transition-duration: 200ms;
-    transition-timing-function: ease-out;
-    animation: cursorAnim .5s infinite alternate;
-    pointer-events: none;
-    background-color: #4646464f;
-}
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -252,6 +238,19 @@ h2 {
 }
 
 @media only screen and (min-width: 900px) {
+    .cursor {
+        z-index: 999999;
+        width: 25px;
+        height: 25px;
+        border: 1.5px solid white;
+        border-radius: 50%;
+        position: relative;
+        transition-duration: 200ms;
+        transition-timing-function: ease-out;
+        animation: cursorAnim .5s infinite alternate;
+        pointer-events: none;
+        background-color: #4646464f;
+    }
     .show-desktop {
         display: block;
     }
@@ -307,7 +306,7 @@ h2 {
     }
     .podcast-gray-container {
         width: 60%;
-        height: 55%;
+        height: 70%;
         grid-area: podcast;
         margin-top: 2em;
         margin-left: 25vw;
@@ -319,14 +318,16 @@ h2 {
     }
     .podcast-thumbnail {
         width: 100%;
-        margin-left: -17vw;
+        margin-left: -14vw;
     }
     .podcast-description {
         padding-left: 25vw;
-        margin-top: -22vw;
+        margin-top: -20vw;
         margin-bottom: 0;
         padding-bottom: 0;
         padding-top: 0;
+        /* color: #f0f0f0f1; */
+        /* display: none; */
     }
     .links-btn {
         width: 22%;
@@ -342,7 +343,7 @@ h2 {
     }
     .scroll {
         margin-left: 48vw;
-        margin-top: -1vw;
+        margin-top: 0vw;
     }
     .scrollAnchor img {
         transition: 1s;
