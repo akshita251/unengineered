@@ -61,7 +61,7 @@ p {
 }
 
 .podcast-page-thumbnail {
-    width: 55%;
+    width: 75%;
 }
 
 .podcast-page-description {
@@ -88,37 +88,43 @@ h3 {
 .sections {
     display: grid;
     grid-template-columns: auto 55%;
-    grid-template-rows: 15% 65% auto;
-    grid-template-areas: "image title" "image description" "socials blank";
+    grid-template-areas: "left right";
     margin-bottom: 10vw;
+}
+
+.leftside-section {
+    grid-area: left;
+}
+
+.rightside-section {
+    grid-area: right;
 }
 
 .section-thumbnail {
-    grid-area: image;
     padding: 3vw;
     padding-left: 0;
-    width: 90%;
+    width: 100%;
 }
 
 .section-title {
-    grid-area: title;
     font-weight: 500;
     font-size: 1.2em;
     margin-left: 2vw;
+    padding-top: 3vw;
 }
 
 .section-description {
-    grid-area: description;
     margin-left: 2vw;
-    width: 80%;
-    padding-top: 0vw;
+    width: 100%;
+    padding-top: 2vw;
 }
 
 .section-socials {
-    grid-area: socials;
-    margin-left: -0.4em;
+    /* margin-left: -0.4em;
     margin-bottom: 10vw;
-    margin-top: 0vw;
+    margin-top: 0vw; */
+    margin-top: 3vw;
+    margin-left: -1vw;
 }
 
 .section-socials a {
@@ -135,7 +141,7 @@ h3 {
     box-shadow: 0 25px, 40px rgba(0, 0, 0, 0.5);
 }
 
-@media only screen and (min-width: 650px) {
+@media only screen and (min-width: 900px) {
     body {
         font-size: 1.1em;
     }
@@ -175,26 +181,32 @@ h3 {
     .sections {
         display: grid;
         grid-template-columns: auto 55%;
-        grid-template-rows: 15% auto auto;
-        grid-template-areas: "image title" "image description" "image socials";
+        grid-template-areas: "left right";
+    }
+    .rightside-section {
+        grid-area: right;
+    }
+    .leftside-section {
+        grid-area: left;
     }
     .section-thumbnail {
-        grid-area: image;
-        padding: 0vw;
-        width: 65%;
+        padding: 2vw;
+        width: 75%;
+        padding-top: 1vw;
     }
     .section-title {
-        grid-area: title;
+        padding-top: 1vw;
         font-weight: 500;
-        font-size: 1.7em;
-        margin-left: 1.7vw;
-    }
-    .section-description {
-        grid-area: description;
+        font-size: 1.6em;
         margin-left: 1.7vw;
         width: 75%;
+    }
+    .section-description {
+        margin-left: 1.7vw;
+        width: 70%;
         font-size: 1.2em;
         margin-top: 2vw;
+        padding-top: 1vw;
     }
     .socials {
         margin-bottom: 0vw;
@@ -207,10 +219,9 @@ h3 {
         margin: 0.4em;
     }
     .section-socials {
-        grid-area: socials;
-        margin-left: 0.40em;
         margin-bottom: 0vw;
-        margin-top: 0vw;
+        margin-top: 2vw;
+        padding-left: 0.4vw;
     }
     .section-socials a {
         margin: 0.4em;
@@ -230,5 +241,46 @@ h3 {
         animation: cursorAnim .5s infinite alternate;
         pointer-events: none;
         background-color: #4646464f;
+    }
+}
+
+@media only screen and (min-width: 1300px) {
+    .section-title {
+        font-size: 1.9em;
+    }
+    .section-description {
+        margin-left: 1.7vw;
+        width: 70%;
+        font-size: 1.5em;
+    }
+}
+
+@media only screen and (min-width: 550px) and (max-width:900px) {
+    .section-thumbnail {
+        width: 80%;
+    }
+    .leftside-section {
+        padding-left: 4vw;
+    }
+    .section-title {
+        font-size: 1.5em;
+        width: 90%;
+    }
+    .section-description {
+        font-size: 1.1em;
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .section-thumbnail {
+        width: 120%;
+        margin-left: -4vw;
+    }
+    .section-socials {
+        margin-left: -5vw;
+    }
+    .rightside-section {
+        margin-left: 1vw;
     }
 }

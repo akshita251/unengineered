@@ -112,15 +112,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     first.get().then((snapshot) => {
         var lastVisible = snapshot.docs[snapshot.docs.length - 1];
-        snapshot.docs.forEach(doc => {
-            readLatestPodcast(doc)
-        });
+        readLatestPodcast(snapshot.docs[0])
 
         next = db.collection("episodes")
             .orderBy("episodeNumber", "desc")
             .startAfter(lastVisible)
             .limit(15);
-
 
         next.get().then((snapshot) => {
             var count = 0;

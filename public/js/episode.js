@@ -25,7 +25,6 @@ function readEpisode(doc) {
     var podcastThumbnail = document.createElement('img');
     var podcastDescription = document.createElement('div');
     var socials = document.createElement('div');
-    var sectionHeading = document.createElement('h3');
 
     podcastTitle.className = 'podcast-page-title';
     titleLine.className = 'title-line';
@@ -112,11 +111,11 @@ function readEpisode(doc) {
 
     var epNum = doc.data().episodeNumber;
     db.collection("episodes").doc(doc.id).collection('sections').orderBy("sectionNumber").get().then((snapshot) => {
+        var sectionHeading = document.createElement('h3');
+        sectionHeading.textContent = 'SECTIONS';
+        podcastContainer.appendChild(sectionHeading);
         snapshot.docs.forEach(doc => {
-            sectionHeading.textContent = 'SECTIONS';
-            podcastContainer.appendChild(sectionHeading);
-            readSections(doc, epNum)
-            console.log(doc.data())
+            readSections(doc, epNum);
         });
     })
 }
@@ -124,6 +123,8 @@ function readEpisode(doc) {
 function readSections(doc, epNum) {
 
     var sections = document.createElement('div')
+    var right = document.createElement('div')
+    var left = document.createElement('div');
     var sectionThumbnail = document.createElement('img');
     var sectionTitle = document.createElement('div');
     var sectionDescription = document.createElement('div');
@@ -134,6 +135,8 @@ function readSections(doc, epNum) {
     var instaImg = document.createElement('img');
 
     sections.className = "sections"
+    right.className = "rightside-section";
+    left.className = "leftside-section"
     sectionThumbnail.className = 'section-thumbnail'
     sectionThumbnail.alt = 'thumbnail'
     sectionTitle.className = 'section-title';
@@ -154,22 +157,24 @@ function readSections(doc, epNum) {
     instaAnchor.href = doc.data().episodeUrl.instagram;
 
     podcastContainer.appendChild(sections);
-    sections.appendChild(sectionThumbnail);
-    sections.appendChild(sectionTitle);
-    sections.appendChild(sectionDescription);
-    sections.appendChild(socials);
+    sections.appendChild(right)
+    sections.appendChild(left)
+    left.appendChild(sectionThumbnail);
+    right.appendChild(sectionTitle);
+    right.appendChild(sectionDescription);
+    if (window.matchMedia("(max-width:900px)").matches) {
+        left.appendChild(socials);
+    } else {
+        right.appendChild(socials);
+    }
     socials.appendChild(instaAnchor);
     instaAnchor.appendChild(instaImg);
     socials.appendChild(youtubeAnchor);
     youtubeAnchor.appendChild(youtubeImg);
 }
 
-var episode = document.location.search.replace(/^.*?\=/, '')
+var episode = parseInt(document.location.search.replace(/^.*?\=/, ''))
 
-db.collection("episodes").orderBy("episodeNumber", "desc").get().then((snapshot) => {
-    snapshot.docs.forEach(doc => {
-        if (doc.data().episodeNumber == episode) {
-            readEpisode(doc);
-        }
-    });
-});
+db.collection("episodes").where("episodeNumber", "==", episode).get().then((snapshot) => {
+    readEpisode(snapshot.docs[0])
+})
