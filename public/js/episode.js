@@ -5,7 +5,7 @@ function load() {
 var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 const cursor = document.querySelector('.cursor');
 if (!isSafari) {
-~~
+    ~~
     document.addEventListener('mousemove', e => {
         if (window.matchMedia("(min-width:900px").matches) {
             cursor.setAttribute("style", "top: " + (e.pageY - 10) + "px; left: " + (e.pageX - 10) + "px;")
@@ -54,6 +54,7 @@ function readEpisode(doc) {
                     socialAnchor.alt = 'spotify';
                     socialImg.src = "imgs/Spotify.svg"
                     socialAnchor.href = episodeUrls[episodeUrlKey];
+                    socialAnchor.target = "blank";
                     socials.appendChild(socialAnchor);
                     socialAnchor.appendChild(socialImg);
                     break;
@@ -61,6 +62,7 @@ function readEpisode(doc) {
                     socialAnchor.alt = 'instagram';
                     socialImg.src = "imgs/Instagram.svg"
                     socialAnchor.href = episodeUrls[episodeUrlKey];
+                    socialAnchor.target = "blank";
                     socials.appendChild(socialAnchor);
                     socialAnchor.appendChild(socialImg);
                     break;
@@ -68,6 +70,7 @@ function readEpisode(doc) {
                     socialAnchor.alt = 'youtube';
                     socialImg.src = "imgs/YouTube.svg"
                     socialAnchor.href = episodeUrls[episodeUrlKey];
+                    socialAnchor.target = "blank";
                     socials.appendChild(socialAnchor);
                     socialAnchor.appendChild(socialImg);
                     break;
@@ -75,6 +78,7 @@ function readEpisode(doc) {
                     socialAnchor.alt = 'google podcast';
                     socialImg.src = "imgs/googlePodcasts.svg"
                     socialAnchor.href = episodeUrls[episodeUrlKey];
+                    socialAnchor.target = "blank";
                     socials.appendChild(socialAnchor);
                     socialAnchor.appendChild(socialImg);
                     break;
@@ -82,6 +86,7 @@ function readEpisode(doc) {
                     socialAnchor.alt = 'radio public';
                     socialImg.src = "imgs/radiopublic.svg"
                     socialAnchor.href = episodeUrls[episodeUrlKey];
+                    socialAnchor.target = "blank";
                     socials.appendChild(socialAnchor);
                     socialAnchor.appendChild(socialImg);
                     break;
@@ -89,6 +94,7 @@ function readEpisode(doc) {
                     socialAnchor.alt = 'pocket casts';
                     socialImg.src = "imgs/pocketcasts.svg"
                     socialAnchor.href = episodeUrls[episodeUrlKey];
+                    socialAnchor.target = "blank";
                     socials.appendChild(socialAnchor);
                     socialAnchor.appendChild(socialImg);
                     break;
@@ -96,6 +102,15 @@ function readEpisode(doc) {
                     socialAnchor.alt = 'beaker';
                     socialImg.src = "imgs/beaker.svg"
                     socialAnchor.href = episodeUrls[episodeUrlKey];
+                    socialAnchor.target = "blank";
+                    socials.appendChild(socialAnchor);
+                    socialAnchor.appendChild(socialImg);
+                    break;
+                case "applepodcast":
+                    socialAnchor.alt = 'apple podcast';
+                    socialImg.src = "imgs/applePodcast.svg"
+                    socialAnchor.href = episodeUrls[episodeUrlKey];
+                    socialAnchor.target = "blank";
                     socials.appendChild(socialAnchor);
                     socialAnchor.appendChild(socialImg);
                     break;
@@ -111,9 +126,11 @@ function readEpisode(doc) {
 
     var epNum = doc.data().episodeNumber;
     db.collection("episodes").doc(doc.id).collection('sections').orderBy("sectionNumber").get().then((snapshot) => {
-        var sectionHeading = document.createElement('h3');
-        sectionHeading.textContent = 'SECTIONS';
-        podcastContainer.appendChild(sectionHeading);
+        if (snapshot.docs[0] != null) {
+            var sectionHeading = document.createElement('h3');
+            sectionHeading.textContent = 'SECTIONS';
+            podcastContainer.appendChild(sectionHeading);
+        }
         snapshot.docs.forEach(doc => {
             readSections(doc, epNum);
         });
@@ -129,10 +146,6 @@ function readSections(doc, epNum) {
     var sectionTitle = document.createElement('div');
     var sectionDescription = document.createElement('div');
     var socials = document.createElement('div');
-    var youtubeAnchor = document.createElement('a');
-    var youtubeImg = document.createElement('img');
-    var instaAnchor = document.createElement('a');
-    var instaImg = document.createElement('img');
 
     sections.className = "sections"
     right.className = "rightside-section";
@@ -142,8 +155,6 @@ function readSections(doc, epNum) {
     sectionTitle.className = 'section-title';
     sectionDescription.className = 'section-description';
     socials.className = 'section-socials';
-    youtubeImg.alt = 'youtube';
-    instaImg.alt = 'instagram';
 
     const sectionImageName = 'sectionThumbnails/episode' + epNum + "/thumbnail" + doc.data().sectionNumber + '.png'
     storageRef.child(sectionImageName).getDownloadURL().then(function(url) {
@@ -151,10 +162,34 @@ function readSections(doc, epNum) {
     });
     sectionTitle.textContent = doc.data().sectionTitle;
     sectionDescription.textContent = doc.data().sectionDescription;
-    youtubeImg.src = "imgs/YouTube.svg"
-    instaImg.src = "imgs/Instagram.svg"
-    youtubeAnchor.href = doc.data().episodeUrl.youtube;
-    instaAnchor.href = doc.data().episodeUrl.instagram;
+
+    var episodeUrls = doc.data().episodeUrl;
+    if (episodeUrls != null) {
+        for (var episodeUrlKey of Object.keys(episodeUrls)) {
+            console.log(episodeUrlKey);
+            console.log(episodeUrls[episodeUrlKey])
+            var socialAnchor = document.createElement('a');
+            var socialImg = document.createElement('img');
+            switch (episodeUrlKey) {
+                case "instagram":
+                    socialAnchor.alt = 'instagram';
+                    socialImg.src = "imgs/Instagram.svg"
+                    socialAnchor.href = episodeUrls[episodeUrlKey];
+                    socialAnchor.target = "blank";
+                    socials.appendChild(socialAnchor);
+                    socialAnchor.appendChild(socialImg);
+                    break;
+                case "youtube":
+                    socialAnchor.alt = 'youtube';
+                    socialImg.src = "imgs/YouTube.svg"
+                    socialAnchor.href = episodeUrls[episodeUrlKey];
+                    socialAnchor.target = "blank";
+                    socials.appendChild(socialAnchor);
+                    socialAnchor.appendChild(socialImg);
+                    break;
+            }
+        }
+    }
 
     podcastContainer.appendChild(sections);
     sections.appendChild(right)
@@ -167,10 +202,7 @@ function readSections(doc, epNum) {
     } else {
         right.appendChild(socials);
     }
-    socials.appendChild(instaAnchor);
-    instaAnchor.appendChild(instaImg);
-    socials.appendChild(youtubeAnchor);
-    youtubeAnchor.appendChild(youtubeImg);
+
 }
 
 var episode = parseInt(document.location.search.replace(/^.*?\=/, ''))

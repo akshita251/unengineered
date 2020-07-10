@@ -4,7 +4,7 @@ body {
     min-height: 100%;
     font-family: 'Poppins';
     font-size: 0.9em;
-    width: 100vw;
+    /* width: 100vw; */
     /* cursor: none; */
     height: 100vh;
 }
@@ -37,7 +37,7 @@ p {
 }
 
 .podcast-page-container {
-    padding: 1em 3em;
+    padding: 1em 2.5em;
     ;
 }
 
@@ -65,7 +65,7 @@ p {
 }
 
 .podcast-page-description {
-    width: 67%;
+    width: 85%;
     padding: 1.3em 0;
 }
 
@@ -110,7 +110,7 @@ h3 {
     font-weight: 500;
     font-size: 1.2em;
     margin-left: 2vw;
-    padding-top: 3vw;
+    padding-top: 2vw;
 }
 
 .section-description {
@@ -120,9 +120,6 @@ h3 {
 }
 
 .section-socials {
-    /* margin-left: -0.4em;
-    margin-bottom: 10vw;
-    margin-top: 0vw; */
     margin-top: 3vw;
     margin-left: -1vw;
 }
@@ -139,6 +136,60 @@ h3 {
     z-index: 1;
     transform: scale(1.25);
     box-shadow: 0 25px, 40px rgba(0, 0, 0, 0.5);
+}
+
+.section-socials img {
+    transition: 0.5s;
+}
+
+.section-socials img:hover {
+    z-index: 1;
+    transform: scale(1.25);
+    box-shadow: 0 25px, 40px rgba(0, 0, 0, 0.5);
+}
+
+@media only screen and (min-width: 600px) and (max-width:900px) {
+    .podcast-container {
+        padding-left: 5vw;
+        padding-top: 2vw;
+    }
+    .podcast-page-title {
+        font-size: 2em;
+    }
+    .podcast-page-thumbnail {
+        width: 66%;
+    }
+    .podcast-page-description {
+        font-size: 1.2em;
+    }
+    .section-thumbnail {
+        width: 80%;
+    }
+    .leftside-section {
+        padding-left: 4vw;
+    }
+    .section-title {
+        font-size: 1.5em;
+        width: 90%;
+    }
+    .section-description {
+        font-size: 1.1em;
+        width: 80%;
+    }
+    h3 {
+        font-size: 2em;
+    }
+    .section-thumbnail {
+        width: 90%;
+    }
+    .section-title {
+        font-size: 1.6em;
+        width: 100%;
+    }
+    .section-description {
+        width: 80%;
+        font-size: 1.2em;
+    }
 }
 
 @media only screen and (min-width: 900px) {
@@ -162,16 +213,16 @@ h3 {
     }
     .main {
         display: grid;
-        grid-template-columns: 60% auto;
+        grid-template-columns: 55% auto;
         grid-template-areas: "image des";
     }
     .podcast-page-thumbnail {
-        width: 80%;
+        width: 85%;
         grid-area: image;
     }
     .podcast-page-description {
-        width: 75%;
-        padding: 2vw 0;
+        width: 85%;
+        padding: 0vw 0;
         grid-area: des;
         font-size: 1.3em;
     }
@@ -199,11 +250,11 @@ h3 {
         font-weight: 500;
         font-size: 1.6em;
         margin-left: 1.7vw;
-        width: 75%;
+        width: 90%;
     }
     .section-description {
         margin-left: 1.7vw;
-        width: 70%;
+        width: 80%;
         font-size: 1.2em;
         margin-top: 2vw;
         padding-top: 1vw;
@@ -221,7 +272,7 @@ h3 {
     .section-socials {
         margin-bottom: 0vw;
         margin-top: 2vw;
-        padding-left: 0.4vw;
+        padding-left: 2.1vw;
     }
     .section-socials a {
         margin: 0.4em;
@@ -252,23 +303,6 @@ h3 {
         margin-left: 1.7vw;
         width: 70%;
         font-size: 1.5em;
-    }
-}
-
-@media only screen and (min-width: 550px) and (max-width:900px) {
-    .section-thumbnail {
-        width: 80%;
-    }
-    .leftside-section {
-        padding-left: 4vw;
-    }
-    .section-title {
-        font-size: 1.5em;
-        width: 90%;
-    }
-    .section-description {
-        font-size: 1.1em;
-        width: 80%;
     }
 }
 

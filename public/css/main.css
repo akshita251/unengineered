@@ -33,6 +33,10 @@ a {
     color: white;
 }
 
+a:active {
+    background-color: transparent;
+}
+
 a:hover {
     background-color: transparent;
 }
@@ -54,7 +58,7 @@ li {
 
 section {
     text-align: left;
-    margin-left: 8vw;
+    margin-left: 4vw;
 }
 
 .hide-mobile {
@@ -64,7 +68,7 @@ section {
 h1 {
     font-weight: 800;
     font-size: 40px;
-    margin-top: 1.5em;
+    margin-top: 1em;
 }
 
 .socials {
@@ -158,20 +162,20 @@ h1 {
     background: #464646;
     margin: 4em 0.3em;
     text-align: left;
-    padding-left: 11vw;
-    padding-top: 9vw;
+    padding-left: 7vw;
+    padding-top: 7vw;
     padding-bottom: 5vw;
-    padding-right: 5vw;
+    padding-right: 2vw;
 }
 
 .podcast-title {
     font-weight: 600;
-    font-size: 1.4em;
+    font-size: 1.3em;
     padding-bottom: 5vw;
 }
 
 .podcast-thumbnail {
-    width: 80%;
+    width: 85%;
 }
 
 .podcast-description {
@@ -205,19 +209,21 @@ h1 {
 .episodes-title {
     display: flex;
     align-items: flex-start;
+    /* margin-bottom: 10vw; */
 }
 
 h2 {
     margin-left: -22vw;
     margin-top: 9vw;
     font-weight: 500;
-    font-size: 48px;
+    font-size: 2.7em;
 }
 
 .episode-container {
     display: inline-block;
     text-align: left;
-    width: 85%
+    width: 85%;
+    margin-bottom: 10vw;
 }
 
 .episode-number {
@@ -229,7 +235,7 @@ h2 {
 
 .episode-podcast-title {
     font-weight: 500;
-    font-size: 1.6em;
+    font-size: 1.5em;
     padding-bottom: 5.5vw;
 }
 
@@ -238,7 +244,7 @@ h2 {
 }
 
 .footer {
-    height: 30vw;
+    height: 25vw;
 }
 
 @media only screen and (min-width: 900px) {
@@ -342,7 +348,7 @@ h2 {
         scroll-behavior: smooth;
     }
     .desktop-page {
-        height: 100vh;
+        /* height: 100vh; */
         width: 90vw;
     }
     .scroll {
@@ -362,10 +368,10 @@ h2 {
         margin-left: 2vw;
     }
     h2 {
-        margin-left: -20vw;
+        margin-left: -18vw;
         margin-top: 9vw;
         font-weight: 500;
-        font-size: 70px;
+        font-size: 110px;
     }
     @media only screen and (min-width: 1300px) {
         h2 {
@@ -387,17 +393,20 @@ h2 {
         grid-area: right;
         margin-top: -20vw;
         padding-left: 3vw;
-        padding-right: 3vw;
+        padding-right: 4vw;
         margin-bottom: 22vw;
     }
     .left {
         grid-area: left;
-        padding-left: 6vw;
+        padding-left: 4vw;
     }
     .episode-container {
         display: inline-block;
         text-align: left;
         width: 90%;
+    }
+    .footer {
+        height: 10vw;
     }
 }
 
@@ -415,6 +424,24 @@ h2 {
     }
     .podcast-gray-container {
         margin: 4em 10vw;
+    }
+}
+
+@media only screen and (min-width: 500px) {
+    h2 {
+        font-size: 3em;
+    }
+}
+
+@media only screen and (min-width: 650px) {
+    h2 {
+        font-size: 3.4em;
+    }
+}
+
+@media only screen and (min-width: 750px) {
+    h2 {
+        font-size: 4em;
     }
 }
 
