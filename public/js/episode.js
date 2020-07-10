@@ -5,7 +5,10 @@ function load() {
 var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 const cursor = document.querySelector('.cursor');
 if (!isSafari) {
+<<<<<<< HEAD
     ~~
+=======
+>>>>>>> 2bd209546a7ec0345345a945e67dee34d3eb39ab
     document.addEventListener('mousemove', e => {
         if (window.matchMedia("(min-width:900px").matches) {
             cursor.setAttribute("style", "top: " + (e.pageY - 10) + "px; left: " + (e.pageX - 10) + "px;")
