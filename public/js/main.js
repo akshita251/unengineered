@@ -69,7 +69,6 @@ function readPodcast(doc, count) {
     var episode = document.createElement('a');
     var episodeThumbnail = document.createElement('img');
 
-    localStorage.setItem("episodeNumber", doc.data().episodeNumber);
     episodeContainer.className = 'episode-container';
     episodeNumber.className = 'episode-number';
     episodeTitle.className = 'episode-podcast-title';
@@ -107,55 +106,47 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     const observer = new IntersectionObserver(handleIntersect, options);
     observer.observe(document.querySelector(".footer"));
+
     //initial load of data
-    var first = db.collection('episodes').orderBy('episodeNumber', 'desc').limit(1);
-
-    first.get().then((snapshot) => {
-        var lastVisible = snapshot.docs[snapshot.docs.length - 1];
+    db.collection('episodes').orderBy('episodeNumber', 'desc').limit(20).get().then((snapshot) => {
         readLatestPodcast(snapshot.docs[0])
-
+        var count = 0;
+        for (i = 1; i < 20; i++) {
+            count++;
+            readPodcast(snapshot.docs[i], count);
+        }
+        var lastVisible = snapshot.docs[snapshot.docs.length - 1];
+        console.log(lastVisible);
         next = db.collection("episodes")
             .orderBy("episodeNumber", "desc")
             .startAfter(lastVisible)
-            .limit(15);
+            .limit(20);
 
-        next.get().then((snapshot) => {
-            var count = 0;
-            snapshot.docs.forEach(doc => {
-                count++;
-                readPodcast(doc, count);
-            });
-            lastVisible = snapshot.docs[snapshot.docs.length - 1];
-            next = db.collection("episodes")
-                .orderBy("episodeNumber", "desc")
-                .startAfter(lastVisible)
-                .limit(15);
-        });
     });
 });
 
 function handleIntersect(entries) {
     if (entries[0].isIntersecting) {
-        console.warn("something is intersecting with the viewport");
+        console.log("something is intersecting with the viewport");
         getData();
     }
 }
 
 function getData() {
-    console.log("fetch some data");
 
     next.get().then((snapshot) => {
+        console.log("fetch some data");
         var count = 0;
         snapshot.docs.forEach(doc => {
             count++;
-            if(doc.data().show){
-            readPodcast(doc, count);
+            if (doc.data().show) {
+                readPodcast(doc, count);
             }
         });
         lastVisible = snapshot.docs[snapshot.docs.length - 1];
         next = db.collection("episodes")
             .orderBy("episodeNumber", "desc")
             .startAfter(lastVisible)
-            .limit(2);
+            .limit(20);
     });
 }
