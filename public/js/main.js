@@ -148,7 +148,9 @@ function getData() {
         var count = 0;
         snapshot.docs.forEach(doc => {
             count++;
+            if(doc.data().show){
             readPodcast(doc, count);
+            }
         });
         lastVisible = snapshot.docs[snapshot.docs.length - 1];
         next = db.collection("episodes")
