@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
             readPodcast(snapshot.docs[i], count);
         }
         var lastVisible = snapshot.docs[snapshot.docs.length - 1];
-        console.log(lastVisible);
+        // console.log(lastVisible);
         next = db.collection("episodes")
             .orderBy("episodeNumber", "desc")
             .startAfter(lastVisible)
@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function handleIntersect(entries) {
     if (entries[0].isIntersecting) {
-        console.log("something is intersecting with the viewport");
+        // console.log("something is intersecting with the viewport");
         getData();
     }
 }
@@ -135,7 +135,7 @@ function handleIntersect(entries) {
 function getData() {
 
     next.get().then((snapshot) => {
-        console.log("fetch some data");
+        // console.log("fetch some data");
         var count = 0;
         snapshot.docs.forEach(doc => {
             count++;

@@ -17,7 +17,7 @@ if (!isSafari) {
 var podcastContainer = document.querySelector("#container");
 const storageRef = storage.ref();
 
-function readEpisode(doc) {
+function fetchEpisode(doc) {
     var podcastTitle = document.createElement('div');
     var titleLine = document.createElement('div');
     var main = document.createElement('div');
@@ -30,6 +30,8 @@ function readEpisode(doc) {
     main.className = 'main';
     podcastThumbnail.className = 'podcast-page-thumbnail'
     podcastThumbnail.alt = 'thumbnail'
+    // podcastThumbnail.style.border =  "3px solid #FFF"
+    // podcastThumbnail.style.borderRadius = "20px"
     podcastDescription.className = 'podcast-page-description';
     socials.className = 'socials';
 
@@ -44,8 +46,6 @@ function readEpisode(doc) {
     var episodeUrls = doc.data().episodeUrl;
     if (episodeUrls != null) {
         for (var episodeUrlKey of Object.keys(episodeUrls)) {
-            console.log(episodeUrlKey);
-            console.log(episodeUrls[episodeUrlKey])
             var socialAnchor = document.createElement('a');
             var socialImg = document.createElement('img');
             switch (episodeUrlKey) {
@@ -131,12 +131,12 @@ function readEpisode(doc) {
             podcastContainer.appendChild(sectionHeading);
         }
         snapshot.docs.forEach(doc => {
-            readSections(doc, epNum);
+            fetchSections(doc, epNum);
         });
     })
 }
 
-function readSections(doc, epNum) {
+function fetchSections(doc, epNum) {
 
     var sections = document.createElement('div')
     var right = document.createElement('div')
@@ -165,8 +165,6 @@ function readSections(doc, epNum) {
     var episodeUrls = doc.data().episodeUrl;
     if (episodeUrls != null) {
         for (var episodeUrlKey of Object.keys(episodeUrls)) {
-            console.log(episodeUrlKey);
-            console.log(episodeUrls[episodeUrlKey])
             var socialAnchor = document.createElement('a');
             var socialImg = document.createElement('img');
             switch (episodeUrlKey) {
@@ -201,11 +199,32 @@ function readSections(doc, epNum) {
     } else {
         right.appendChild(socials);
     }
+    var thumbnailHeight;
+    var thumbnailWidth;
+    sectionThumbnail.onload = function(){
+    thumbnailHeight = sectionThumbnail.height;
+    thumbnailWidth = sectionThumbnail.width;
+    // console.log(thumbnailWidth + ":" + thumbnailHeight);
+    if(thumbnailWidth> thumbnailHeight){
+    sections.classList.add("horizontal-sections");
+    right.classList.add("horizontal-rightside-section");
+    left.classList.add("horizontal-leftside-section");
+    sectionThumbnail.classList.add('horizontal-section-thumbnail');
+    sectionTitle.classList.add('horizontal-section-title');
+    sectionDescription.classList.add('horizontal-section-description');
+    socials.classList.add('horizontal-section-socials');
+    if (window.matchMedia("(max-width:900px)").matches) {
+        left.removeChild(socials)
+        right.appendChild(socials)
+    }  
+    }
+    };
+   
 
 }
 
 var episode = parseInt(document.location.search.replace(/^.*?\=/, ''))
 
 db.collection("episodes").where("episodeNumber", "==", episode).get().then((snapshot) => {
-    readEpisode(snapshot.docs[0])
+    fetchEpisode(snapshot.docs[0])
 })

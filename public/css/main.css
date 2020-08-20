@@ -64,7 +64,10 @@ section {
 .hide-mobile {
     display: none;
 }
-
+.clips{
+   text-align: center;
+  font-weight: bold;
+}
 h1 {
     font-weight: 800;
     font-size: 40px;
@@ -394,7 +397,7 @@ h2 {
         margin-top: -20vw;
         padding-left: 3vw;
         padding-right: 4vw;
-        margin-bottom: 22vw;
+        margin-bottom: 6vw;
     }
     .left {
         grid-area: left;
